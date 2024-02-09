@@ -9,9 +9,6 @@ const Mars = () => {
         map: "./images/galaxy/mars/mars_1k_color.jpg",
         bumpMap: "./images/galaxy/mars/mars_1k_topo.jpg",
         normalMap:"./images/galaxy/mars/mars_1k_normal.jpg",
-        ringMap:"./images/galaxy/mars/saturnringcolor.jpg",
-        ringptMap:"./images/galaxy/mars/saturnringpattern.gif",
-        
       });
       const refMars = useRef();
       useFrame((state, delta) => {
