@@ -4,6 +4,10 @@ import * as THREE from "three";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import Earth from "./planet/Earth";
+import Neptune from "./planet/Neptune";
+import Uranus from "./planet/Uranus";
+import Saturn from "./planet/Saturn";
+import Jupiter from './planet/Jupiter';
 
 const Sun = () => {
   const textures = useTexture({
@@ -35,6 +39,10 @@ const Sun = () => {
         // opacity="0.5"
       >
         <Earth />
+        <Jupiter/>
+        <Saturn/>
+        <Uranus/>
+        <Neptune/>
       </MeshComponents>
     </>
   );

@@ -12,7 +12,6 @@ const Earth = () => {
     cloudMap:"./images/galaxy/earthcloudmap.jpg",
     cloudBumpMap:"./images/galaxy/earthcloudmaptrans.jpg"
   });
-  const refEarth = useRef();
   const refEarthMesh = useRef();
   const refEarthLightMesh = useRef();
   const refCloudMesh = useRef();
@@ -31,7 +30,6 @@ const Earth = () => {
     <MeshComponents
       radius={0.5}
       transparent={true}
-      ref={refEarth}
       rotation-z={(23.5 * Math.PI) / 180}
       >
       <MeshComponents

@@ -5,7 +5,7 @@ import Sun from "./galaxy/Sun";
 const App = () => {
   return (
     <>
-      <Canvas camera={{ position: [0, 7, 7] }}>
+      <Canvas camera={{ position: [20, 0, 10] }}>
         <Sun />
       </Canvas>
     </>
