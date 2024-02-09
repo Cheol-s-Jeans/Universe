@@ -2,10 +2,14 @@ import { OrbitControls, useHelper, useTexture } from "@react-three/drei";
 import MeshComponents from "./MeshComponents";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import Earth from "./planet/Earth";
 import Mercury from './planet/Mercury';
 import Venus from './planet/Venus';
+import Earth from "./planet/Earth";
 import Mars from './planet/Mars';
+import Jupiter from './planet/Jupiter';
+import Saturn from "./planet/Saturn";
+import Uranus from "./planet/Uranus";
+import Neptune from "./planet/Neptune";
 
 const Sun = () => {
   const textures = useTexture({
@@ -34,6 +38,10 @@ const Sun = () => {
         <Venus/>
         <Earth />
         <Mars/>
+        <Jupiter/>
+        <Saturn/>
+        <Uranus/>
+        <Neptune/>
       </MeshComponents>
     </>
   );
