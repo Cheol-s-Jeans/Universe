@@ -13,6 +13,7 @@ const MeshComponents = forwardRef((props, ref) => {
     transparent: transparent,
     side: side,
     emissive: emissive,
+
     alphaMap:alphaMap,
     aoMap:aoMap,
     map: map,
@@ -23,6 +24,7 @@ const MeshComponents = forwardRef((props, ref) => {
     metalnessMap:metalnessMap,
     normalMap: normalMap,
     roughnessMap:roughnessMap,
+    
     blending:blending,
     bumpScale:bumpScale,
   });
