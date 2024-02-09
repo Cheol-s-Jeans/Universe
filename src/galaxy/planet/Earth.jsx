@@ -12,6 +12,7 @@ const Earth = () => {
     cloudMap:"./images/galaxy/earth/earthcloudmap.jpg",
     cloudBumpMap:"./images/galaxy/earth/earthcloudmaptrans.jpg"
   });
+  const refEarth = useRef();
   const refEarthMesh = useRef();
   const refEarthLightMesh = useRef();
   const refCloudMesh = useRef();

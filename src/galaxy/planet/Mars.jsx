@@ -25,37 +25,14 @@ const Mars = () => {
             radius={0.5}
             rotation-z={(25.19 * Math.PI) / 180}
             >
-          <MeshComponents
-            map={textures.map}
-            bumpMap={textures.bumpMap}
-            normalMap={textures.normalMap}
-            bumpScale={5}
-            ref={refMars}
-          />
-          <group>
-            <mesh>
-          <torusGeometry
-          args={[2,0.3,2,64]}
-
-          />
-          <meshBasicMaterial
-          map={textures.ringMap}
-          textures={textures.ringptMap.rotation=90*Math.PI/180}
-
-          />
-          
-          </mesh>
-
-          <mesh>
-          <torusGeometry
-          args={[2,0.3,2,64]}
-          />
-          <meshBasicMaterial
-          map={textures.ringptMap}
-          />
-          </mesh>
-          </group>
-</MeshComponents>
+            <MeshComponents
+              map={textures.map}
+              bumpMap={textures.bumpMap}
+              normalMap={textures.normalMap}
+              bumpScale={5}
+              ref={refMars}
+            />
+            </MeshComponents>
         </>
       );
 };
