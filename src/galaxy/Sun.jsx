@@ -1,17 +1,19 @@
 import { OrbitControls, useHelper, useTexture } from "@react-three/drei";
 import MeshComponents from "./MeshComponents";
-import * as THREE from "three";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import Mercury from './planet/Mercury';
+import Venus from './planet/Venus';
 import Earth from "./planet/Earth";
-import Neptune from "./planet/Neptune";
-import Uranus from "./planet/Uranus";
-import Saturn from "./planet/Saturn";
+import Mars from './planet/Mars';
 import Jupiter from './planet/Jupiter';
+import Saturn from "./planet/Saturn";
+import Uranus from "./planet/Uranus";
+import Neptune from "./planet/Neptune";
 
 const Sun = () => {
   const textures = useTexture({
-    map: "./images/galaxy/sunmap.jpg",
+    map: "./images/galaxy/sun/sunmap.jpg",
   });
   const refMesh = useRef();
   useFrame((state, delta) => {
@@ -31,14 +33,11 @@ const Sun = () => {
         position={[0, 0, 0]}
         scale={1}
         map={textures.map}
-        // rotation-z={(23.5 * Math.PI) / 180}
-        // side={THREE.BackSide}
-        // roughness="0.5"
-        // metalness="1"
-        // transparent={true}
-        // opacity="0.5"
       >
+        <Mercury />
+        <Venus/>
         <Earth />
+        <Mars/>
         <Jupiter/>
         <Saturn/>
         <Uranus/>
