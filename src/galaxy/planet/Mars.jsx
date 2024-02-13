@@ -18,11 +18,14 @@ const Mars = () => {
       return (
         <>
             <MeshComponents
-                      position={[9,0,0]}
-            radius={0.5}
+                      position={[190,0,0]}
+            radius={0.3}
             rotation-z={(25.19 * Math.PI) / 180}
+            transparent={true}
+      opacity={0}
             >
             <MeshComponents
+            radius={0.5}
               map={textures.map}
               bumpMap={textures.bumpMap}
               normalMap={textures.normalMap}

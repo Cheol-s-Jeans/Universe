@@ -9,28 +9,19 @@ const Neptune = () => {
     map: "./images/galaxy/neptune/neptunemap.jpg",
   });
   const refneptuneMesh = useRef();
-  useFrame((state,delta)=>{
-    delta = 0.6022335
+  useFrame((state, delta) => {
+    delta = 0.6022335;
     refneptuneMesh.current.rotation.y += delta;
-  })
+  });
   return (
     <>
-      <group
-        position={[17,0,0]}>
-        <MeshComponents
-          radius={0.5}
-          transparent={true}
-          rotation-z={(28.33*Math.PI/180)}
-        >
-          <MeshComponents
-            radius={1}
-            map={textures.map}
-            ref={refneptuneMesh}
-            transparent={false}
-          />
+      <group position={[270, 0, 0]}>
+        <MeshComponents radius={0.5} transparent={true} opacity={0} rotation-z={(28.33 * Math.PI) / 180}>
+          <MeshComponents radius={3.9} map={textures.map} ref={refneptuneMesh} transparent={false} />
         </MeshComponents>
       </group>
-    </>);
+    </>
+  );
 };
 
 export default Neptune;
