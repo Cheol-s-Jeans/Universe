@@ -16,11 +16,13 @@ const Venus = () => {
     return (
         <>
         <MeshComponents
-            position={[5,0,0]}
-            radius={0.5}
+            position={[150.5,0,0]}
+            transparent={true}
+            opacity={0}
             rotation-z={(2.64 * Math.PI) / 180}
             >
             <MeshComponents
+            radius={0.9}
             ref={refVenus}
             map={textures.map}
             bumpMap={textures.bumpMap}
