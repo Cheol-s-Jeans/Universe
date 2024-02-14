@@ -21,16 +21,17 @@ const Uranus = () => {
     return (
         <>
             <group
-                position={[15,0,0]}
+                position={[250,0,0]}
             >
                 <MeshComponents
                     radius={0.5}
                     transparent={true}
+                    opacity={0}
                     rotation-z={(82.23*Math.PI/180)}
                 >
                     <MeshComponents
                         ref={refUranusMesh}
-                        radius={1}
+                        radius={4}
                         map={textures.map}
                         transparent={false}
                     />
