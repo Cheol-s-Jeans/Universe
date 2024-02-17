@@ -6,7 +6,7 @@ import * as THREE from "three";
 
 const Jupiter = () => {
   const textures = useTexture({
-    map: "./images/galaxy/jupiter/jupiter2_4k.jpg",
+    map: "./images/galaxy/jupiter/8k_jupiter.jpg",
   });
   const refJupiterMesh = useRef();
   useFrame((state, delta) => {
