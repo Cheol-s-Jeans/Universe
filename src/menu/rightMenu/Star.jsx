@@ -1,9 +1,11 @@
+import { StarWrap } from "../../styled/RightMenuStyles";
+import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 
 const star = () => {
     return (
-        <div>
-            
-        </div>
+        <StarWrap>
+            <span><MdKeyboardDoubleArrowLeft /></span>
+        </StarWrap>
     );
 };
 
