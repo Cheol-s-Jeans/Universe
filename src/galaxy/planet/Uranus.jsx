@@ -21,7 +21,7 @@ const Uranus = () => {
     return (
         <>
             <group
-                position={[250,0,0]}
+                position={[530,0,0]}
             >
                 <MeshComponents
                     radius={0.5}

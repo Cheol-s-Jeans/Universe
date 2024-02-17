@@ -20,10 +20,10 @@ const Saturn = () => {
   });
   return (
     <>
-      <group position={[230, 0, 0]}>
+      <group position={[470, 0, 0]}>
         <MeshComponents adius={0.5} r transparent={true} opacity={0} rotation-z={(26.73 * Math.PI) / 180}>
           <MeshComponents ref={refSaturnMesh} radius={9.4} map={textures.map} transparent={false} />
-          <group>
+          {/* <group> */}
             <mesh>
               <torusGeometry args={[2, 0.3, 2, 64]} />
               <meshBasicMaterial
@@ -33,15 +33,15 @@ const Saturn = () => {
                 // opacity={0}
               />
             </mesh>
-            <mesh>
+            {/* <mesh>
               <torusGeometry args={[2, 0.3, 2, 64]} />
               <meshBasicMaterial
                 map={textures.bumpMap}
                 blending={THREE.AdditiveBlending}
                 textures={(textures.bumpMap.rotation = (90 * Math.PI) / 180)}
               />
-            </mesh>
-          </group>
+            </mesh> */}
+          {/* </g roup> */}
         </MeshComponents>
       </group>
     </>

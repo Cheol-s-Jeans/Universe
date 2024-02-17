@@ -15,7 +15,7 @@ const Neptune = () => {
   });
   return (
     <>
-      <group position={[270, 0, 0]}>
+      <group position={[590, 0, 0]}>
         <MeshComponents radius={0.5} transparent={true} opacity={0} rotation-z={(28.33 * Math.PI) / 180}>
           <MeshComponents radius={3.9} map={textures.map} ref={refneptuneMesh} transparent={false} />
         </MeshComponents>

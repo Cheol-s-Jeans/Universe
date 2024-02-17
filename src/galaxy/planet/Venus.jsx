@@ -16,7 +16,7 @@ const Venus = () => {
     return (
         <>
         <MeshComponents
-            position={[150.5,0,0]}
+            position={[230.5,0,0]}
             transparent={true}
             opacity={0}
             rotation-z={(2.64 * Math.PI) / 180}
