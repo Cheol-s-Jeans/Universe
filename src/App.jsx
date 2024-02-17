@@ -13,7 +13,7 @@ const App = () => {
         camera={{
           near: 1,
           far: 20000,
-          position: [0, 0, 2470],
+          position: [0, 0, 700],
         }}
       >
         <Sun />

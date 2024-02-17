@@ -16,7 +16,7 @@ const Mercury = () => {
   return (
     <>
       <MeshComponents
-        position={[130, 0, 0]}
+        position={[170, 0, 0]}
         radius={0.1}
         rotation-z={(0.01 * Math.PI) / 180}
         transparent={true}

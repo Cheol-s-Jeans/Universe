@@ -2,7 +2,7 @@ import React from "react";
 import * as THREE from "three";
 
 const StarField = () => {
-  const radius = 0.5;
+  const radius = 109;
   const MARGIN = 0;
   const scene = new THREE.Scene();
   const r = radius,
@@ -12,7 +12,7 @@ const StarField = () => {
   const vertices2 = [];
 
   const vertex = new THREE.Vector3();
-
+  
   for (let i = 0; i < 250; i++) {
     vertex.x = Math.random() * 2 - 1;
     vertex.y = Math.random() * 2 - 1;
@@ -43,16 +43,16 @@ const StarField = () => {
 
   for (let i = 10; i < 30; i++) {
     const stars = new THREE.Points(starsGeometry[i % 2], starsMaterials[i % 6]);
-    stars.rotation.x = Math.random() * 1;
-    stars.rotation.y = Math.random() * 1;
-    stars.rotation.z = Math.random() * 1;
-    stars.scale.setScalar(i * 1000);
+    stars.rotation.x = Math.random() * 6;
+    stars.rotation.y = Math.random() * 6;
+    stars.rotation.z = Math.random() * 6;
+    stars.scale.setScalar(i * 25);
     stars.matrixAutoUpdate = false;
     stars.updateMatrix();
     scene.add(stars);
+    console.log(stars)
   }
-
-  return <primitive object={scene} />;
+  return <primitive object={scene}/>;
 };
 
 export default StarField;
