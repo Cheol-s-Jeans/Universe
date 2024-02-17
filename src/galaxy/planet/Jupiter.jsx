@@ -15,7 +15,7 @@ const Jupiter = () => {
   });
   return (
     <>
-      <group position={[210, 0, 0]}>
+      <group position={[410, 0, 0]}>
         <MeshComponents radius={0.5} transparent={true} opacity={0} rotation-z={(3.12 * Math.PI) / 180}>
           <MeshComponents radius={11.2} ref={refJupiterMesh} map={textures.map} transparent={false} />
         </MeshComponents>

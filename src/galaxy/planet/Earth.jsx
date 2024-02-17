@@ -28,7 +28,7 @@ const Earth = () => {
   });
   return (
     <>
-      <group position={[170, 0, 0]}>
+      <group position={[290, 0, 0]}>
         <MeshComponents radius={0.5} transparent={true} opacity={0} ref={refEarth} rotation-z={(23.44 * Math.PI) / 180}>
           <MeshComponents
             radius={1}

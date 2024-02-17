@@ -1,34 +1,142 @@
-import { forwardRef, useRef } from "react";
+import { forwardRef } from "react";
 import * as THREE from "three";
 
-// 메시 컴포넌트 재사용
 const MeshComponents = forwardRef((props, ref) => {
-  const { radius ,color, roughness, metalness, opacity, transparent, map,alphaMap,aoMap, side, emissive, bumpMap, emissiveMap,envMap,lightMap,metalnessMap,normalMap ,roughnessMap ,bumpScale,blending} = props;
-  const geom = new THREE.SphereGeometry(radius, 64, 32);
-  const mate = new THREE.MeshStandardMaterial({
-    color: color,
-    roughness: roughness,
-    metalness: metalness,
-    opacity: opacity,
-    transparent: transparent,
-    side: side,
-    emissive: emissive,
+  const {
+    radius,
+    color,
+    roughness,
+    metalness,
+    opacity,
+    transparent,
+    map,
+    alphaMap,
+    aoMap,
+    side,
+    emissive,
+    bumpMap,
+    emissiveMap,
+    envMap,
+    lightMap,
+    metalnessMap,
+    normalMap,
+    roughnessMap,
+    bumpScale,
+    blending,
+  } = props;
 
-    alphaMap:alphaMap,
-    aoMap:aoMap,
-    map: map,
-    bumpMap: bumpMap,
-    emissiveMap:emissiveMap,
-    envMap:envMap,
-    lightMap:lightMap,
-    metalnessMap:metalnessMap,
-    normalMap: normalMap,
-    roughnessMap:roughnessMap,
-    
-    blending:blending,
-    bumpScale:bumpScale,
+  // 기본값 설정
+  const defaultValues = {
+    radius: 1,
+    color: 0xffffff,
+    roughness: 0.5,
+    metalness: 0.5,
+    opacity: 1,
+    transparent: false,
+    map: null,
+    alphaMap: null,
+    aoMap: null,
+    side: THREE.FrontSide,
+    emissive: 0x000000,
+    bumpMap: null,
+    emissiveMap: null,
+    envMap: null,
+    lightMap: null,
+    metalnessMap: null,
+    normalMap: null,
+    roughnessMap: null,
+    bumpScale: 1,
+    blending: THREE.NormalBlending,
+  };
+
+  // 기본값과 속성 병합
+  const mergedProps = { ...defaultValues, ...props };
+
+  // Material에 전달할 속성 추출
+  const {
+    radius: mergedRadius,
+    color: mergedColor,
+    roughness: mergedRoughness,
+    metalness: mergedMetalness,
+    opacity: mergedOpacity,
+    transparent: mergedTransparent,
+    map: mergedMap,
+    alphaMap: mergedAlphaMap,
+    aoMap: mergedAoMap,
+    side: mergedSide,
+    emissive: mergedEmissive,
+    bumpMap: mergedBumpMap,
+    emissiveMap: mergedEmissiveMap,
+    envMap: mergedEnvMap,
+    lightMap: mergedLightMap,
+    metalnessMap: mergedMetalnessMap,
+    normalMap: mergedNormalMap,
+    roughnessMap: mergedRoughnessMap,
+    bumpScale: mergedBumpScale,
+    blending: mergedBlending,
+  } = mergedProps;
+
+  const geom = new THREE.SphereGeometry(mergedRadius, 64, 32);
+  const mate = new THREE.MeshStandardMaterial({
+    color: mergedColor,
+    roughness: mergedRoughness,
+    metalness: mergedMetalness,
+    opacity: mergedOpacity,
+    transparent: mergedTransparent,
+    side: mergedSide,
+    emissive: mergedEmissive,
+    alphaMap: mergedAlphaMap,
+    aoMap: mergedAoMap,
+    map: mergedMap,
+    bumpMap: mergedBumpMap,
+    emissiveMap: mergedEmissiveMap,
+    envMap: mergedEnvMap,
+    lightMap: mergedLightMap,
+    metalnessMap: mergedMetalnessMap,
+    normalMap: mergedNormalMap,
+    roughnessMap: mergedRoughnessMap,
+    bumpScale: mergedBumpScale,
+    blending: mergedBlending,
   });
-  return <mesh {...props} ref={ref} geometry={geom} material={mate}></mesh>;
+
+  return <mesh {...mergedProps} ref={ref} geometry={geom} material={mate}></mesh>;
 });
 
 export default MeshComponents;
+
+
+
+// import { forwardRef, useRef } from "react";
+// import * as THREE from "three";
+
+// // 메시 컴포넌트 재사용
+// const MeshComponents = forwardRef((props, ref) => {
+//   const { radius ,color, roughness, metalness, opacity, transparent, map,alphaMap,aoMap, side, emissive, bumpMap, emissiveMap,envMap,lightMap,metalnessMap,normalMap ,roughnessMap ,bumpScale,blending} = props;
+//   const geom = new THREE.SphereGeometry(radius, 64, 32);
+//   const mate = new THREE.MeshStandardMaterial({
+//     color: color,
+//     roughness: roughness,
+//     metalness: metalness,
+//     opacity: opacity,
+//     transparent: transparent,
+//     side: side,
+//     emissive: emissive,
+
+//     alphaMap:alphaMap,
+//     aoMap:aoMap,
+//     map: map,
+//     bumpMap: bumpMap,
+//     emissiveMap:emissiveMap,
+//     envMap:envMap,
+//     lightMap:lightMap,
+//     metalnessMap:metalnessMap,
+//     normalMap: normalMap,
+//     roughnessMap:roughnessMap,
+    
+//     blending:blending,
+//     bumpScale:bumpScale,
+//   });
+//   return <mesh {...props} ref={ref} geometry={geom} material={mate}></mesh>;
+// });
+
+// export default MeshComponents;

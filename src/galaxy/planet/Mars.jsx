@@ -18,7 +18,7 @@ const Mars = () => {
       return (
         <>
             <MeshComponents
-                      position={[190,0,0]}
+                      position={[350,0,0]}
             radius={0.3}
             rotation-z={(25.19 * Math.PI) / 180}
             transparent={true}

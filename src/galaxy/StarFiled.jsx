@@ -2,7 +2,7 @@ import React from "react";
 import * as THREE from "three";
 
 const StarField = () => {
-  const radius = 0.5;
+  const radius = 109;
   const MARGIN = 0;
   const scene = new THREE.Scene();
   const r = radius,
@@ -46,7 +46,7 @@ const StarField = () => {
     stars.rotation.x = Math.random() * 1;
     stars.rotation.y = Math.random() * 1;
     stars.rotation.z = Math.random() * 1;
-    stars.scale.setScalar(i * 1000);
+    stars.scale.setScalar(i * 25);
     stars.matrixAutoUpdate = false;
     stars.updateMatrix();
     scene.add(stars);
