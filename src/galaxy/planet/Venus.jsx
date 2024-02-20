@@ -3,7 +3,7 @@ import MeshComponents from '../MeshComponents';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 
-const Venus = () => {
+const Venus = ({ lineGeometry, lineMaterial }) => {
     const textures = useTexture({
         map: "./images/galaxy/venus/venusmap.jpg",
         bumpMap: "./images/galaxy/venus/venusbump.jpg",
@@ -15,8 +15,10 @@ const Venus = () => {
       });
     return (
         <>
-        <MeshComponents
-            position={[230.5,0,0]}
+        <group>
+            <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
+            <MeshComponents
+            position={[230,0,0]}
             transparent={true}
             opacity={0}
             rotation-z={(2.64 * Math.PI) / 180}
@@ -28,7 +30,8 @@ const Venus = () => {
             bumpMap={textures.bumpMap}
             bumpScale={3}
             />
-</MeshComponents>
+            </MeshComponents>
+        </group>
         </>
     );
 };
