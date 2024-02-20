@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import Sun from "./galaxy/Sun";
 import * as THREE from "three";
 import StarField from './galaxy/StarFiled';
@@ -19,19 +19,16 @@ const App = () => {
   return (
     <>
       <Canvas
-        shadows
         camera={{
           near: 1,
           far: 20000,
           position: [0, 200, 500],
         }}
-        
       >
       {/* <CameraControls position={position} target={target}/> */}
         <Sun />
         <StarField />
       </Canvas>
-
       {/* 메뉴 - React */}
       <TopMenu/>
       <Star/>

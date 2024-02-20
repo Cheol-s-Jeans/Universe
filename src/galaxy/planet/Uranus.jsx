@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
 
-const Uranus = () => {
+const Uranus = ({ lineGeometry, lineMaterial }) => {
     const textures = useTexture({
         map:"./images/galaxy/uranus/uranusmap.jpg",
         //천왕성띠
@@ -20,14 +20,15 @@ const Uranus = () => {
     })
     return (
         <>
-            <group
-                position={[530,0,0]}
-            >
+            <group>
+        <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
+
                 <MeshComponents
                     radius={0.5}
                     transparent={true}
                     opacity={0}
                     rotation-z={(82.23*Math.PI/180)}
+                    position={[530,0,0]}
                 >
                     <MeshComponents
                         ref={refUranusMesh}

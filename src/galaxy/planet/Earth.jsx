@@ -1,16 +1,17 @@
 import { useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Line, useTexture } from "@react-three/drei";
+import { OrbitControls, useTexture } from "@react-three/drei";
 import MeshComponents from "../MeshComponents";
 import Moon from "./Moon";
 import * as THREE from "three";
 
-  const Earth = () => {
+  const Earth = ({ lineGeometry, lineMaterial ,torusGeometry, torusMaterial}) => {
     const refEarth = useRef();
     const refEarthMesh = useRef();
     const refEarthLightMesh = useRef();
     const refCloudMesh = useRef();
     const refMoonRevolution = useRef();
+    const refEarthLine = useRef();
     const textures = useTexture({
       map: "./images/galaxy/earth/earthmap1k.jpg",
       bumpMap: "./images/galaxy/earth/earthbump1k.jpg",
@@ -29,12 +30,36 @@ import * as THREE from "three";
     const moonDelta = 0.0001339;
     refMoonRevolution.current.rotation.y += moonDelta;
   });
+  // Hover시, 이벤트
+  const [isHovered, setHovered] = useState(false);
+  const targetScale = isHovered ? new THREE.Vector3(20, 20, 20) : new THREE.Vector3(1, 1, 1);
+  const targetColor = isHovered ? new THREE.Color('red') : new THREE.Color('#aaaaaa');
 
+  useFrame(() => {
+    if (refEarth.current && refEarthLine.current) {
+      refEarthMesh.current.scale.lerp(targetScale, 0.05);  // 천천히 크기를 변경
+      refEarthLine.current.material.color.lerp(targetColor, 0.1);  // 천천히 색상을 변경
+    }
+  });
+
+  const onPointerOver = () => {
+    setHovered(true);
+  };
+
+  const onPointerOut = () => {
+    setHovered(false);
+  };
+  
+  // Click시, 이벤트
+  
   
   return (
     <>
-      <group position={[290, 0, 0]}>
-        <MeshComponents radius={0.5} transparent={true} opacity={0} ref={refEarth} rotation-z={(23.44 * Math.PI) / 180}>
+       <group onPointerOver={onPointerOver} onPointerOut={onPointerOut}>
+        <mesh geometry={torusGeometry} material={torusMaterial} rotation={[Math.PI / 2, 0, 0]} side={THREE.DoubleSide} renderOrder={998}/>
+        <line ref={refEarthLine} geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]} color={'red'}/>
+        <MeshComponents radius={0.5} transparent={true} opacity={0} ref={refEarth} rotation-z={(23.44 * Math.PI) / 180}  position={[290, 0, 0]} >
+        <MeshComponents radius={30} transparent={true} opacity={0} side={THREE.DoubleSide} renderOrder={999} />
           <MeshComponents
             radius={1}
             map={textures.map}
@@ -61,9 +86,9 @@ import * as THREE from "three";
             ref={refCloudMesh}
             scale={1.005}
           />
-        </MeshComponents>
         <MeshComponents radius={0.5} ref={refMoonRevolution} transparent={true} opacity={0}>
           <Moon />
+        </MeshComponents>
         </MeshComponents>
       </group>
     </>
