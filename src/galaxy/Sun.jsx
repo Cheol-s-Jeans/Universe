@@ -64,7 +64,7 @@ const { gl,camera,scene } = useThree();
   
   return (
     <>
-      <axesHelper scale={10} />
+      <axesHelper scale={200} />
       <ambientLight intensity={0.3} />
       <EffectComposer>
         <Bloom intensity={1} luminanceThreshold={0.9} luminanceSmoothing={0.222} mipmapBlur={true} />
@@ -78,6 +78,7 @@ const { gl,camera,scene } = useThree();
           const { lineGeometry, lineMaterial,torusGeometry, torusMaterial  } = createCurve(planet.radius, planet.radius);
           return <PlanetComponent key={planet.id} lineGeometry={lineGeometry} lineMaterial={lineMaterial} torusGeometry={torusGeometry} torusMaterial={torusMaterial} />
         })}
+
       </MeshComponents>
     </>
   );
