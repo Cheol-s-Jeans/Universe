@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { AdditiveBlending, RepeatWrapping } from 'three';
 import * as THREE from 'three'
-const Mars = () => {
+const Mars = ({ lineGeometry, lineMaterial }) => {
     const textures = useTexture({
         map: "./images/galaxy/mars/mars_1k_color.jpg",
         bumpMap: "./images/galaxy/mars/mars_1k_topo.jpg",
@@ -17,6 +17,9 @@ const Mars = () => {
       });
       return (
         <>
+        <group>
+        <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
+
             <MeshComponents
                       position={[350,0,0]}
             radius={0.3}
@@ -33,6 +36,7 @@ const Mars = () => {
               ref={refMars}
             />
             </MeshComponents>
+            </group>
         </>
       );
 };

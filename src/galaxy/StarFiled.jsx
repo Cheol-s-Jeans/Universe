@@ -50,7 +50,6 @@ const StarField = () => {
     stars.matrixAutoUpdate = false;
     stars.updateMatrix();
     scene.add(stars);
-    // console.log(stars)
   }
   return <primitive object={scene}/>;
 };

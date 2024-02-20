@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
 
-const Jupiter = () => {
+const Jupiter = ({ lineGeometry, lineMaterial }) => {
   const textures = useTexture({
     map: "./images/galaxy/jupiter/8k_jupiter.jpg",
   });
@@ -15,8 +15,10 @@ const Jupiter = () => {
   });
   return (
     <>
-      <group position={[410, 0, 0]}>
-        <MeshComponents radius={0.5} transparent={true} opacity={0} rotation-z={(3.12 * Math.PI) / 180}>
+      <group >
+      <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
+
+        <MeshComponents radius={0.5} transparent={true} opacity={0} rotation-z={(3.12 * Math.PI) / 180} position={[410, 0, 0]}>
           <MeshComponents radius={11.2} ref={refJupiterMesh} map={textures.map} transparent={false} />
         </MeshComponents>
       </group>

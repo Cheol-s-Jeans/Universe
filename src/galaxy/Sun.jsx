@@ -1,7 +1,7 @@
-import { Line, OrbitControls, useHelper, useTexture } from "@react-three/drei";
+import { OrbitControls, useTexture } from "@react-three/drei";
 import MeshComponents from "./MeshComponents";
 import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import Mercury from "./planet/Mercury";
 import Venus from "./planet/Venus";
 import Earth from "./planet/Earth";
@@ -11,85 +11,74 @@ import Saturn from "./planet/Saturn";
 import Uranus from "./planet/Uranus";
 import Neptune from "./planet/Neptune";
 import * as THREE from 'three'
+import { Bloom, BrightnessContrast, ChromaticAberration, DepthOfField, DotScreen, EffectComposer, Glitch, GodRays, HueSaturation, LensFlare, Noise, Outline, Pixelation, SSAO, Scanline, SelectiveBloom, Sepia, ToneMapping, Vignette } from '@react-three/postprocessing';
+const planets = [
+  {id:1, name: 'Mercury', component: Mercury, radius: 170 },
+  {id:2, name: 'Venus', component: Venus, radius: 230 },
+  {id:3, name: 'Earth', component: Earth, radius: 290 },
+  {id:4, name: 'Mars', component: Mars, radius: 350 },
+  {id:5, name: 'Jupiter', component: Jupiter, radius: 410 },
+  {id:6, name: 'Saturn', component: Saturn, radius: 470 },
+  {id:7, name: 'Uranus', component: Uranus, radius: 530 },
+  {id:8, name: 'Neptune', component: Neptune, radius: 590 },
+];
+
 const Sun = () => {
-
-
-  const textures = useTexture({
-    map: "./images/galaxy/sun/8k_sun.jpg",
-  });
+  const textures = useTexture({ map: "./images/galaxy/sun/8k_sun.jpg" });
   const refMesh = useRef();
+
   useFrame((state, delta) => {
     delta = 0.00001;
     refMesh.current.rotation.y += delta;
   });
-  
 
-  const createCurve = (xRadius,yRadius) => {
-    const curve = new THREE.EllipseCurve(
-      0,  0,            // ax, aY
-      xRadius, yRadius,           // xRadius, yRadius
-      0,  2 * Math.PI,  // aStartAngle, aEndAngle
-      false,            // aClockwise
-      0                 // aRotation
-    );
-    return curve;
+  const createCurve = (xRadius, yRadius, tube =15, radialSegments = 16, tubularSegments = 100) => {
+    const curve = new THREE.EllipseCurve(0, 0, xRadius, yRadius, 0, 2 * Math.PI, false, 0);
+    const points = curve.getPoints(1000);
+    const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+    const lineMaterial = new THREE.LineBasicMaterial({ color: 0xaaaaaa, transparent : true, opacity:0.3 });
+    const torusGeometry = new THREE.TorusGeometry(xRadius, tube, radialSegments, tubularSegments);
+    const torusMaterial = new THREE.MeshBasicMaterial({ color: 0xaaaaaa, transparent : true, opacity:0});
+    return { lineGeometry, lineMaterial, torusGeometry, torusMaterial };
+}
+
+
+const { gl,camera,scene } = useThree();
+  const raycaster = new THREE.Raycaster();
+  
+  const onMouseMove = (e) =>{
+    const mouse = {
+      x: (e.clientX /gl.domElement.clientWidth) *2 -1,
+      y: -(e.clientY /gl.domElement.clientHeight) *2 +1,
+    }
+    raycaster.setFromCamera(mouse,camera)
+    const inersects = raycaster.intersectObjects(scene.children, true)
+    // console.log(mouse.x, mouse.y)
+    if(inersects.length > 0){
+      console.log('마우스 인')
+    }else {
+      console.log('마우스 아웃')
+    }
   }
-  const mercuryCurve = createCurve(170,170);
-  const mercuryPoints = mercuryCurve.getPoints(1000);
-  const mercuryLineGeometry = new THREE.BufferGeometry().setFromPoints( mercuryPoints );
-  const mercuryLineMaterial = new THREE.LineBasicMaterial( { color: 0xaaaaaa ,transparent : true, opacity:0.3} );
-  const venusCurve = createCurve(230,230);
-  const venusPoints = venusCurve.getPoints(1000);
-  const venusLineGeometry = new THREE.BufferGeometry().setFromPoints( venusPoints );
-  const venusLineMaterial = new THREE.LineBasicMaterial( { color: 0xaaaaaa,transparent : true, opacity:0.3 } );
-  const earthCurve = createCurve(290,290);
-  const earthPoints = earthCurve.getPoints(1000);
-  const earthLineGeometry = new THREE.BufferGeometry().setFromPoints( earthPoints );
-  const earthLineMaterial = new THREE.LineBasicMaterial( { color: 0xaaaaaa ,transparent : true, opacity:0.3} );
-  const marsCurve = createCurve(350,350);
-  const marsPoints = marsCurve.getPoints(1000);
-  const marsLineGeometry = new THREE.BufferGeometry().setFromPoints( marsPoints );
-  const marsLineMaterial = new THREE.LineBasicMaterial( { color: 0xaaaaaa,transparent : true, opacity:0.3 } );
-  const jupiterCurve = createCurve(410,410);
-  const jupiterPoints = jupiterCurve.getPoints(1000);
-  const jupiterLineGeometry = new THREE.BufferGeometry().setFromPoints( jupiterPoints );
-  const jupiterLineMaterial = new THREE.LineBasicMaterial( { color: 0xaaaaaa,transparent : true, opacity:0.3 } );
-  const saturnCurve = createCurve(470,470);
-  const saturnPoints = saturnCurve.getPoints(1000);
-  const saturnLineGeometry = new THREE.BufferGeometry().setFromPoints( saturnPoints );
-  const saturnLineMaterial = new THREE.LineBasicMaterial( { color: 0xaaaaaa,transparent : true, opacity:0.3 } );
-  const uranusCurve = createCurve(530,530);
-  const uranusPoints = uranusCurve.getPoints(1000);
-  const uranusLineGeometry = new THREE.BufferGeometry().setFromPoints( uranusPoints );
-  const uranusLineMaterial = new THREE.LineBasicMaterial( { color: 0xaaaaaa,transparent : true, opacity:0.3 } );
-  const neptuneCurve = createCurve(590,590);
-  const neptunePoints = neptuneCurve.getPoints(1000);
-  const neptuneLineGeometry = new THREE.BufferGeometry().setFromPoints( neptunePoints );
-  const neptuneLineMaterial = new THREE.LineBasicMaterial( { color: 0xaaaaaa,transparent : true, opacity:0.3 } );
+  gl.domElement.addEventListener('click', onMouseMove)
+  
   return (
     <>
       <axesHelper scale={200} />
       <ambientLight intensity={0.3} />
-      <OrbitControls />
-      <pointLight intensity={50000} position={[0, 0, 0]} color="#ffffff" distance={0} />
+      <EffectComposer>
+        <Bloom intensity={1} luminanceThreshold={0.9} luminanceSmoothing={0.222} mipmapBlur={true} />
+      </EffectComposer>
+      <MeshComponents radius={109} ref={refMesh} position={[0, 0, 0]} map={textures.map} emissiveMap={textures.map} emissive="#ffffff" emissiveIntensity={3}>
+      <OrbitControls enabled={true}/>
 
-      <MeshComponents radius={109} ref={refMesh} position={[0, 0, 0]} scale={1} map={textures.map} rotation={[0,0,0.1]}>
-        <line geometry={mercuryLineGeometry} material={mercuryLineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
-        <line geometry={venusLineGeometry} material={venusLineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
-        <line geometry={earthLineGeometry} material={earthLineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
-        <line geometry={marsLineGeometry} material={marsLineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
-        <line geometry={jupiterLineGeometry} material={jupiterLineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
-        <line geometry={saturnLineGeometry} material={saturnLineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
-        <line geometry={uranusLineGeometry} material={uranusLineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
-        <line geometry={neptuneLineGeometry} material={neptuneLineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
-        <Mercury />
-        <Venus />
-        <Earth />
-        <Mars />
-        <Jupiter />
-        <Saturn />
-        <Uranus />
-        <Neptune />
+        <pointLight intensity={500000} position={[0, 0, 0]} color="#FFFFFF" distance={0} />
+        {planets.map((planet) => {
+          const PlanetComponent = planet.component;
+          const { lineGeometry, lineMaterial,torusGeometry, torusMaterial  } = createCurve(planet.radius, planet.radius);
+          return <PlanetComponent key={planet.id} lineGeometry={lineGeometry} lineMaterial={lineMaterial} torusGeometry={torusGeometry} torusMaterial={torusMaterial} />
+        })}
+
       </MeshComponents>
     </>
   );
