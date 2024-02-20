@@ -1,14 +1,9 @@
 import { BottomMenuWrap } from "../styled/BottomMenuStyles";
-import { Swiper, SwiperSlide } from "swiper/react" // basic
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 import { Canvas } from "@react-three/fiber";
-import MeshComponents from "../galaxy/MeshComponents";
-import { useTexture } from "@react-three/drei";
 import BottomMenuPlanet from "./BottomMenuPlanet";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const bottomMenuList = [
     {id:1, name:"galaxy", map:"./images/galaxy/Asphalt_005_COLOR.jpg", bumpMap:"./images/galaxy/Asphalt_005_ROUGH.jpg", desc:"행성성명작성"},
@@ -25,42 +20,36 @@ const bottomMenuList = [
 ]
 
 const BottomMenu = () => {
-
+    const settings = {
+        slidesToShow: 6,
+        responsive: [ // 반응형 웹 구현 옵션
+            {  
+                breakpoint: 1023,
+                settings: {
+                    slidesToShow:4
+                } 
+            },
+            { 
+                breakpoint: 767,
+                settings: {	
+                    slidesToShow:2
+                } 
+            }
+        ]
+      };
     return (
         <BottomMenuWrap>
-            <Swiper
-                style={{
-                    width:"100%",
-                    height:"100%",
-                }}
-                slidesPerView={6}
-                slidesPerGroup={1}
-                spaceBetween={0}
-                navigation={true}
-                modules={[ Navigation]}
-                className="planer_swiper"
-
-                //반응형 작동안함
-                // breakpoints={
-                //     {1280:{
-                //             slidesPreView:4,
-                //             slidesPerGroup:1,
-                //     }, 720:{
-                //                 slidesPreView:2,
-                //                 slidesPerGroup:1,	
-                //     }}
-                // }
-            >
-                {bottomMenuList.map(item=><SwiperSlide key={item.id} className="planer_list">
+            <Slider {...settings}>
+                {bottomMenuList.map(item=><div key={item.id} className="planer_list">
                         <div className="planer_list_box">
                             <Canvas>
                                 <BottomMenuPlanet item={item} style={{ hover: { boxShadow: '0px 0px 22px 10px #FFFFFF' } }}/>
                             </Canvas>
                             <span>{item.name}</span>
                         </div>
-                    </SwiperSlide>
+                    </div>
                 )}
-            </Swiper>
+            </Slider>
         </BottomMenuWrap>
     );
 };
