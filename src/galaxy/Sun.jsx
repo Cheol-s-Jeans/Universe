@@ -68,12 +68,12 @@ const Sun = () => {
   const neptuneLineMaterial = new THREE.LineBasicMaterial( { color: 0xaaaaaa,transparent : true, opacity:0.3 } );
   return (
     <>
-      <axesHelper scale={10} />
+      <axesHelper scale={200} />
       <ambientLight intensity={0.3} />
       <OrbitControls />
       <pointLight intensity={50000} position={[0, 0, 0]} color="#ffffff" distance={0} />
 
-      <MeshComponents radius={109} ref={refMesh} position={[0, 0, 0]} scale={1} map={textures.map}>
+      <MeshComponents radius={109} ref={refMesh} position={[0, 0, 0]} scale={1} map={textures.map} rotation={[0,0,0.1]}>
         <line geometry={mercuryLineGeometry} material={mercuryLineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
         <line geometry={venusLineGeometry} material={venusLineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
         <line geometry={earthLineGeometry} material={earthLineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
