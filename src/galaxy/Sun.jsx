@@ -11,7 +11,7 @@ import Saturn from "./planet/Saturn";
 import Uranus from "./planet/Uranus";
 import Neptune from "./planet/Neptune";
 import * as THREE from 'three'
-import { Bloom, BrightnessContrast, ChromaticAberration, DepthOfField, DotScreen, EffectComposer, Glitch, GodRays, HueSaturation, LensFlare, Noise, Outline, Pixelation, SSAO, Scanline, SelectiveBloom, Sepia, ToneMapping, Vignette } from '@react-three/postprocessing';
+import { Bloom, EffectComposer} from '@react-three/postprocessing';
 const planets = [
   {id:1, name: 'Mercury', component: Mercury, radius: 170 },
   {id:2, name: 'Venus', component: Venus, radius: 230 },
@@ -67,10 +67,23 @@ const { gl,camera,scene } = useThree();
       <axesHelper scale={200} />
       <ambientLight intensity={0.3} />
       <EffectComposer>
-        <Bloom intensity={1} luminanceThreshold={0.9} luminanceSmoothing={0.222} mipmapBlur={true} />
+        <Bloom 
+          intensity={1} 
+          luminanceThreshold={0.9} 
+          luminanceSmoothing={0.222} 
+          mipmapBlur={true} />
       </EffectComposer>
-      <MeshComponents radius={109} ref={refMesh} position={[0, 0, 0]} map={textures.map} emissiveMap={textures.map} emissive="#ffffff" emissiveIntensity={3}>
-      <OrbitControls enabled={true}/>
+      {/* 중간 주석 처리 Alt + Shift + A */}
+      <MeshComponents 
+        radius={109} 
+        ref={refMesh} 
+        position={[0, 0, 0]} 
+        map={textures.map} 
+        emissiveMap={textures.map} 
+        emissive="#ffffff" 
+        /* emissiveIntensity={3} */
+      >
+        <OrbitControls enabled={true}/>
 
         <pointLight intensity={500000} position={[0, 0, 0]} color="#FFFFFF" distance={0} />
         {planets.map((planet) => {
