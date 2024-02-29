@@ -3,7 +3,7 @@ import MeshComponents from "../MeshComponents";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
-const Mercury = ({ lineGeometry, lineMaterial }) => {
+const Mercury = ({ lineGeometry, lineMaterial,name }) => {
   const textures = useTexture({
     map: "./images/galaxy/mercury/mercurymap.jpg",
     bumpMap: "./images/galaxy/mercury/mercurybump.jpg",
@@ -18,6 +18,7 @@ const Mercury = ({ lineGeometry, lineMaterial }) => {
       <group>
       <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI /2 , 0 , 0]}/>
       <MeshComponents
+      name={name}
         position={[170, 0, 0]}
         radius={0.1}
         rotation-z={(0.01 * Math.PI) / 180}

@@ -5,7 +5,7 @@ import MeshComponents from "../MeshComponents";
 import Moon from "./Moon";
 import * as THREE from "three";
 
-  const Earth = ({ lineGeometry, lineMaterial ,torusGeometry, torusMaterial}) => {
+  const Earth = ({ lineGeometry, lineMaterial ,torusGeometry, torusMaterial ,name}) => {
     const refEarth = useRef();
     const refEarthMesh = useRef();
     const refEarthLightMesh = useRef();
@@ -37,28 +37,22 @@ import * as THREE from "three";
 
   useFrame(() => {
     if (refEarth.current && refEarthLine.current) {
-      refEarthMesh.current.scale.lerp(targetScale, 0.05);  // 천천히 크기를 변경
-      refEarthLine.current.material.color.lerp(targetColor, 0.1);  // 천천히 색상을 변경
+      refEarthMesh.current.scale.lerp(targetScale, 0.05);
+      refEarthLine.current.material.color.lerp(targetColor, 0.1); 
     }
   });
-
-  const onPointerOver = () => {
-    setHovered(true);
-  };
-
-  const onPointerOut = () => {
-    setHovered(false);
-  };
-  
-  // Click시, 이벤트
-  
-  
+  const onPointerOver = () =>{
+    setHovered(true)
+  }
+  const onPointerOut = () =>{
+    setHovered(false)
+  }
   return (
     <>
-       <group onPointerOver={onPointerOver} onPointerOut={onPointerOut}>
+        <group onPointerOver={onPointerOver} onPointerOut={onPointerOut}>
         <mesh geometry={torusGeometry} material={torusMaterial} rotation={[Math.PI / 2, 0, 0]} side={THREE.DoubleSide} renderOrder={998}/>
         <line ref={refEarthLine} geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]} color={'red'}/>
-        <MeshComponents radius={0.5} transparent={true} opacity={0} ref={refEarth} rotation-z={(23.44 * Math.PI) / 180}  position={[290, 0, 0]} >
+        <MeshComponents radius={0.5} transparent={true} opacity={0} ref={refEarth} rotation-z={(23.44 * Math.PI) / 180}  position={[290, 0, 0]} name={name}>
         <MeshComponents radius={30} transparent={true} opacity={0} side={THREE.DoubleSide} renderOrder={999} />
           <MeshComponents
             radius={1}
