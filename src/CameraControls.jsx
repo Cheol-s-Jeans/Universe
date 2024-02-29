@@ -4,23 +4,48 @@ import { OrbitControls } from "@react-three/drei";
   import gsap from 'gsap'
 
   
-   const CameraControls = ({position, target}) => {
-     const { camera } = useThree();
-     const ref = useRef(null);
+  const CameraControls = ({position, target}) => {
+    const { camera } = useThree();
+    const ref = useRef(null);
 
-     function cameraAnimate() {
-      if (ref.current) {
+    function cameraAnimate() {
+      console.log(position)
+     if (ref.current) {
+      if(position.x === 290){
         gsap.timeline().to(
           camera.position, 
           {
             duration: 2,
             repeat: 0,
-            x: position.x,
-            y: position.y,
-            z: position.z,
+            x: position.x + 4,
+            y: position.y + 2,
+            z: position.z + 2,
             ease: "power3.inOut",
         });
+        gsap.timeline().to(
+          ref.current.target,
+          {
+            duration: 2,
+            repeat: 0,
+            x: target.x,
+            y: target.y,
+            z: target.z,
+            ease: "power3.inOut",
+          }
+        );
+      }else {
 
+        gsap.timeline().to(
+          camera.position, 
+          {
+            duration: 2,
+            repeat: 0,
+            x: position.x + 40,
+            y: position.y + 20,
+            z: position.z + 50,
+            ease: "power3.inOut",
+        });
+ 
         gsap.timeline().to(
           ref.current.target,
           {
@@ -33,15 +58,17 @@ import { OrbitControls } from "@react-three/drei";
           }
         );
       }
-    }
+     }
+   }
 
-    useEffect(() => {
-      cameraAnimate();
-    }, [target, position]);
+   useEffect(() => {
+    
+     cameraAnimate();
+   }, [target, position]);
 
-     return (
-       <OrbitControls ref={ref} />
-     );
-   };
+    return (
+      <OrbitControls ref={ref} />
+    );
+  };
 
   export default CameraControls ;

@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import Sun from "./galaxy/Sun";
 import * as THREE from "three";
@@ -9,24 +9,22 @@ import BottomMenu from './menu/BottomMenu';
 import RightMenu from "./menu/RightMenu";
 
 const App = () => {
-  // const [position, setPosition] = useState({ x: 25, y: 4, z: -8})
-  // const [target, setTarget] = useState({x: 0, y: 0, z: 0})
-
-  // const handleOnclick = () => {
-  //   setPosition({x: 5, y: 2, z: 0})
-  //   setTarget({x: 3, y: 2, z: 0 })
-  // }
+  const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z:500})
+  const [cameraTarget, setCameraTarget] = useState({x: 0, y: 0, z: 0})
+  const CameraMove = (planetPosition) =>{
+    setCameraPosition(planetPosition)
+    setCameraTarget(planetPosition)
+  }
   return (
     <>
       <Canvas
         camera={{
           near: 1,
           far: 20000,
-          position: [0, 200, 500],
+          position: [cameraPosition.x, cameraPosition.y, cameraPosition.z]
         }}
       >
-      {/* <CameraControls position={position} target={target}/> */}
-        <Sun />
+        <Sun CameraMove={CameraMove} cameraTarget={cameraTarget} cameraPosition={cameraPosition} />
         <StarField />
       </Canvas>
       {/* 메뉴 - React */}

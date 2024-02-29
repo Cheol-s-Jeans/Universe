@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
 
-const Saturn = ({ lineGeometry, lineMaterial }) => {
+const Saturn = ({ lineGeometry, lineMaterial, name}) => {
   const textures = useTexture({
     map: "./images/galaxy/saturn/8k_saturn.jpg",
     //토성 띠
@@ -20,9 +20,9 @@ const Saturn = ({ lineGeometry, lineMaterial }) => {
   });
   return (
     <>
-      <group>
-      <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
-        <MeshComponents radius={0.5} transparent={true} opacity={0} rotation-z={(26.73 * Math.PI) / 180}  position={[470, 0, 0]}>
+      <group >
+      <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]} />
+        <MeshComponents radius={0.5} transparent={true} opacity={0} rotation-z={(26.73 * Math.PI) / 180}  position={[470, 0, 0]} name={name}>
           <MeshComponents ref={refSaturnMesh} radius={9.4} map={textures.map} transparent={false}/>
             <group ref={refSaturnRingMesh}>
             <mesh rotation-x={Math.PI/2}>
