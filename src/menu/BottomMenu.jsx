@@ -45,7 +45,6 @@ const BottomMenu = () => {
                 navigation={true}
                 modules={[ Navigation]}
                 className="planer_swiper"
-
                 //반응형 작동안함
                 // breakpoints={
                 //     {1280:{
