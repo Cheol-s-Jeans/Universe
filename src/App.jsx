@@ -6,7 +6,7 @@ import * as THREE from "three";
 import StarField from './galaxy/StarFiled';
 import TopMenu from "./menu/TopMenu";
 import BottomMenu from './menu/BottomMenu';
-import Star from './menu/rightMenu/Star';
+import RightMenu from "./menu/RightMenu";
 
 const App = () => {
   const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z:500})
@@ -29,7 +29,7 @@ const App = () => {
       </Canvas>
       {/* 메뉴 - React */}
       <TopMenu/>
-      <Star/>
+      <RightMenu/>
       <BottomMenu/>
     </>
   );

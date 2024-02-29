@@ -13,9 +13,6 @@ import Uranus from "./planet/Uranus";
 import Neptune from "./planet/Neptune";
 import * as THREE from 'three'
 import { Bloom, EffectComposer} from '@react-three/postprocessing';
-
-
-
 const planets = [
   {id:1, name: "Mercury", component: Mercury, radius: 170 },
   {id:2, name: 'Venus', component: Venus, radius: 230 },
@@ -75,7 +72,11 @@ useEffect(() => {
     <>
       <ambientLight intensity={0.3} />
       <EffectComposer>
-        <Bloom intensity={1} luminanceThreshold={0.9} luminanceSmoothing={0.222} mipmapBlur={true} />
+        <Bloom 
+          intensity={1} 
+          luminanceThreshold={0.9} 
+          luminanceSmoothing={0.222} 
+          mipmapBlur={true} />
       </EffectComposer>
       <MeshComponents radius={109} ref={refMesh} position={[0, 0, 0]} map={textures.map} emissiveMap={textures.map} emissive="#ffffff" emissiveIntensity={3}>
       <CameraControls position={cameraPosition} target={cameraTarget}/>
