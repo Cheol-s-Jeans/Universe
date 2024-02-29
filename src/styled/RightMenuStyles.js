@@ -85,13 +85,8 @@ export const StarWrap = styled.div`
                 font-size: 35px;
             }
         }
-        .fishbread_baking{
-            position: relative;
+        .btn_box{
             margin-top: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            .btn_box{
                 span{
                     display: inline-block;
                     color:white;
@@ -124,18 +119,41 @@ export const StarWrap = styled.div`
                     }
                 }
             }
-            img{
-                width: 200px;
-                margin-top: 80px;
-            }
-        }
-        .smoke{
-            color: white;
-            .smoke_1{
-                display: flex;
-                flex-direction: column;
+        .fishbread_baking{
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top:40px ;
+            .bread_box{
+                position:relative;
+                img{
+                    width: 100px;
+                    margin-top: 30px;
+                    margin-left: 20px;
+                }
                 span{
-                    transform: rotate(180deg);
+                    position: absolute;
+                    top: 0px;
+                    left: 35%;
+                    display: inline-block;
+                    font-size: 40px;
+                    font-weight: 900;
+                    transform: rotate(90deg);
+                    color: white;
+                    &:last-of-type{
+                        left: 55%;
+                        top: -10px;
+                    }
+                }
+
+            }
+            .smoke{
+                .smoke_1{
+                    /* display: flex; */
+                    /* flex-direction: column; */
+                    
                 }
             }
         }

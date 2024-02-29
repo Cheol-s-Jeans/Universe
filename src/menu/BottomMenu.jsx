@@ -1,14 +1,14 @@
 import { BottomMenuWrap } from "../styled/BottomMenuStyles";
 import { Swiper, SwiperSlide } from "swiper/react" // basic
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Canvas } from "@react-three/fiber";
-import MeshComponents from "../galaxy/MeshComponents";
-import { useTexture } from "@react-three/drei";
 import BottomMenuPlanet from "./BottomMenuPlanet";
+import { useState } from "react";
+// import HoverCircle from "./HoverCircle";
 
 const bottomMenuList = [
     {id:1, name:"galaxy", map:"./images/galaxy/Asphalt_005_COLOR.jpg", bumpMap:"./images/galaxy/Asphalt_005_ROUGH.jpg", desc:"행성성명작성"},
@@ -25,8 +25,18 @@ const bottomMenuList = [
 ]
 
 const BottomMenu = () => {
-
-    return (
+    // const radius = 5;
+    // const segments = 32;
+    // const dashSize = 0.1;
+    // const gapSize = 0.1;
+    const [isHoverId, setIsHoverId] = useState(null);
+    const mouseOver = (id) => {
+        setIsHoverId(id);
+    }
+    const mouseOut = () =>{
+        setIsHoverId(null);
+    }
+    return ( 
         <BottomMenuWrap>
             <Swiper
                 style={{
@@ -52,9 +62,16 @@ const BottomMenu = () => {
                 // }
             >
                 {bottomMenuList.map(item=><SwiperSlide key={item.id} className="planer_list">
-                        <div className="planer_list_box">
+                        <div className="planer_list_box" onMouseOver={()=>mouseOver(item.id)} onMouseOut={mouseOut}>
+                            <div className="circle">
+                                <svg className="curved-line"  viewBox="0 0 100 20">
+                                    {/* viewBox = x y width height */}
+                                    <path d="M0 20 Q50 0 100 20" fill="none" stroke="#fff" strokeWidth="10"/>
+                                </svg>
+                            </div>
                             <Canvas>
-                                <BottomMenuPlanet item={item} style={{ hover: { boxShadow: '0px 0px 22px 10px #FFFFFF' } }}/>
+                                {/* <HoverCircle radius={radius} segments={segments} dashSize={dashSize} gapSize={gapSize} />   */}
+                                <BottomMenuPlanet item={item} isHoverId={isHoverId} style={{ hover: { boxShadow: '0px 0px 22px 10px #FFFFFF' } }}/>
                             </Canvas>
                             <span>{item.name}</span>
                         </div>

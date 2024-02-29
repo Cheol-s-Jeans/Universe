@@ -2,11 +2,11 @@ import {styled} from 'styled-components'
 
 export const BottomMenuWrap = styled.div`
     position: absolute;
-    bottom: 0px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    height: 220px;
+    height: 240px;
     box-sizing: border-box;
     padding-top: 20px;
     text-transform: uppercase;
@@ -29,6 +29,17 @@ export const BottomMenuWrap = styled.div`
                 align-items: center;
                 color: #aaa;
                 font-weight: 600;
+                position: relative;
+                &:hover{
+                    
+                }
+                .circle{
+                    .curved-line {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+        
                 img{
                     width: 150px;
                 }
