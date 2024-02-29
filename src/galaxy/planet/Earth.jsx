@@ -41,6 +41,12 @@ import * as THREE from "three";
       refEarthLine.current.material.color.lerp(targetColor, 0.1); 
     }
   });
+  const onPointerOver = () =>{
+    setHovered(true)
+  }
+  const onPointerOut = () =>{
+    setHovered(false)
+  }
   return (
     <>
         <group onPointerOver={onPointerOver} onPointerOut={onPointerOut}>
