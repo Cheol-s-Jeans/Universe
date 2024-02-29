@@ -142,6 +142,7 @@ export const StarWrap = styled.div`
                     font-weight: 900;
                     transform: rotate(90deg);
                     color: white;
+                    opacity: 0;
                     &:last-of-type{
                         left: 55%;
                         top: -10px;

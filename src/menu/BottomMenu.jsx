@@ -25,16 +25,12 @@ const bottomMenuList = [
 ]
 
 const BottomMenu = () => {
-    // const radius = 5;
-    // const segments = 32;
-    // const dashSize = 0.1;
-    // const gapSize = 0.1;
     const [isHoverId, setIsHoverId] = useState(null);
     const mouseOver = (id) => {
         setIsHoverId(id);
     }
     const mouseOut = () =>{
-        setIsHoverId(null);
+        setIsHoverId();
     }
     return ( 
         <BottomMenuWrap>
@@ -49,7 +45,6 @@ const BottomMenu = () => {
                 navigation={true}
                 modules={[ Navigation]}
                 className="planer_swiper"
-
                 //반응형 작동안함
                 // breakpoints={
                 //     {1280:{
@@ -63,14 +58,7 @@ const BottomMenu = () => {
             >
                 {bottomMenuList.map(item=><SwiperSlide key={item.id} className="planer_list">
                         <div className="planer_list_box" onMouseOver={()=>mouseOver(item.id)} onMouseOut={mouseOut}>
-                            <div className="circle">
-                                <svg className="curved-line"  viewBox="0 0 100 20">
-                                    {/* viewBox = x y width height */}
-                                    <path d="M0 20 Q50 0 100 20" fill="none" stroke="#fff" strokeWidth="10"/>
-                                </svg>
-                            </div>
                             <Canvas>
-                                {/* <HoverCircle radius={radius} segments={segments} dashSize={dashSize} gapSize={gapSize} />   */}
                                 <BottomMenuPlanet item={item} isHoverId={isHoverId} style={{ hover: { boxShadow: '0px 0px 22px 10px #FFFFFF' } }}/>
                             </Canvas>
                             <span>{item.name}</span>

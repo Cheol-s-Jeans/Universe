@@ -10,11 +10,10 @@ const BottomMenuPlanet = ({item, isHoverId}) => {
     const aoMapUrl = aoMap?useTexture(aoMap):null;
     const refPlanetMesh = useRef();
     useFrame((state, delta)=>{
-        // console.log(isHoverId===id)
-        if(isHoverId===id){
+        if(isHoverId !== id){
             delta = 0.004;
             refPlanetMesh.current.rotation.y += delta;
-            // refPlanetMesh.current.scale = 1.2;
+
         }
     });
     return (
