@@ -8,7 +8,7 @@ import 'swiper/css/scrollbar';
 import { Canvas } from "@react-three/fiber";
 import BottomMenuPlanet from "./BottomMenuPlanet";
 import { useState } from "react";
-// import HoverCircle from "./HoverCircle";
+import * as THREE from 'three'
 
 const bottomMenuList = [
     {id:1, name:"galaxy", map:"./images/galaxy/Asphalt_005_COLOR.jpg", bumpMap:"./images/galaxy/Asphalt_005_ROUGH.jpg", desc:"행성성명작성"},
@@ -25,12 +25,13 @@ const bottomMenuList = [
 ]
 
 const BottomMenu = () => {
-    const [isHoverId, setIsHoverId] = useState(null);
+    const [isHoverId, setIsHoverId] = useState(false);
+
     const mouseOver = (id) => {
         setIsHoverId(id);
     }
     const mouseOut = () =>{
-        setIsHoverId();
+        setIsHoverId(false);
     }
     return ( 
         <BottomMenuWrap>

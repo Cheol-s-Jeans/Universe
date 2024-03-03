@@ -16,10 +16,10 @@ const Mercury = ({ lineGeometry, lineMaterial,name }) => {
   return (
     <>
       <group>
-      <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI /2 , 0 , 0]}/>
+      {/* <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI /2 , 0 , 0]}/> */}
       <MeshComponents
       name={name}
-        position={[170, 0, 0]}
+        position={[150, 0, 0]}
         radius={0.1}
         rotation-z={(0.01 * Math.PI) / 180}
         transparent={true}

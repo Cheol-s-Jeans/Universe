@@ -16,9 +16,9 @@ const Venus = ({ lineGeometry, lineMaterial ,name}) => {
     return (
         <>
         <group>
-            <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
+            {/* <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]}/> */}
             <MeshComponents
-            position={[230,0,0]}
+            position={[200,0,0]}
             name={name}
             transparent={true}
             opacity={0}

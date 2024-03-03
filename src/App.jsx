@@ -9,8 +9,8 @@ import BottomMenu from './menu/BottomMenu';
 import RightMenu from "./menu/RightMenu";
 
 const App = () => {
-  const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z:500})
-  const [cameraTarget, setCameraTarget] = useState({x: 0, y: 0, z: 0})
+  const [cameraPosition, setCameraPosition] = useState({ x:0, y: 0, z:500})
+  const [cameraTarget, setCameraTarget] = useState({x: 410, y: 0, z: 0})
   const CameraMove = (planetPosition) =>{
     setCameraPosition(planetPosition)
     setCameraTarget(planetPosition)
@@ -20,7 +20,7 @@ const App = () => {
       <Canvas
         camera={{
           near: 1,
-          far: 20000,
+          far: 10000,
           position: [cameraPosition.x, cameraPosition.y, cameraPosition.z]
         }}
       >

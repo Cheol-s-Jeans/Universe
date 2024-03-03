@@ -16,8 +16,7 @@ const Jupiter = ({ lineGeometry, lineMaterial ,name}) => {
   return (
     <>
       <group >
-      <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
-        <MeshComponents radius={0.5} transparent={true} opacity={0} rotation-z={(3.12 * Math.PI) / 180} position={[410, 0, 0]} name={name}>
+        <MeshComponents radius={0.5} transparent={true} opacity={0} rotation-z={(3.12 * Math.PI) / 180} position={[350, 0, 0]} name={name}>
           <MeshComponents radius={11.2} ref={refJupiterMesh} map={textures.map} transparent={false} />
         </MeshComponents>
       </group>

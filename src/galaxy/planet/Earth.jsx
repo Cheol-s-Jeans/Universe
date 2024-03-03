@@ -11,7 +11,7 @@ import * as THREE from "three";
     const refEarthLightMesh = useRef();
     const refCloudMesh = useRef();
     const refMoonRevolution = useRef();
-    const refEarthLine = useRef();
+    // const refEarthLine = useRef();
     const textures = useTexture({
       map: "./images/galaxy/earth/earthmap1k.jpg",
       bumpMap: "./images/galaxy/earth/earthbump1k.jpg",
@@ -31,29 +31,36 @@ import * as THREE from "three";
     refMoonRevolution.current.rotation.y += moonDelta;
   });
   // Hover시, 이벤트
-  const [isHovered, setHovered] = useState(false);
-  const targetScale = isHovered ? new THREE.Vector3(20, 20, 20) : new THREE.Vector3(1, 1, 1);
-  const targetColor = isHovered ? new THREE.Color('red') : new THREE.Color('#aaaaaa');
+  // const [isHovered, setHovered] = useState(false);
+  // const targetScale = isHovered ? new THREE.Vector3(20, 20, 20) : new THREE.Vector3(1, 1, 1);
+  // const targetColor = isHovered ? new THREE.Color('red') : new THREE.Color('#aaaaaa');
 
-  useFrame(() => {
-    if (refEarth.current && refEarthLine.current) {
-      refEarthMesh.current.scale.lerp(targetScale, 0.05);
-      refEarthLine.current.material.color.lerp(targetColor, 0.1); 
-    }
-  });
-  const onPointerOver = () =>{
-    setHovered(true)
-  }
-  const onPointerOut = () =>{
-    setHovered(false)
-  }
+  // useFrame(() => {
+  //   if (refEarth.current) {
+      // refEarthMesh.current.scale.lerp(targetScale, 0.05);
+      // refEarthLine.current.material.color.lerp(targetColor, 0.1); 
+    // }
+  // });
+  // const onPointerOver = () =>{
+  //   setHovered(true)
+  // }
+  // const onPointerOut = () =>{
+  //   setHovered(false)
+  // }
   return (
     <>
-        <group onPointerOver={onPointerOver} onPointerOut={onPointerOut}>
-        <mesh geometry={torusGeometry} material={torusMaterial} rotation={[Math.PI / 2, 0, 0]} side={THREE.DoubleSide} renderOrder={998}/>
-        <line ref={refEarthLine} geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]} color={'red'}/>
-        <MeshComponents radius={0.5} transparent={true} opacity={0} ref={refEarth} rotation-z={(23.44 * Math.PI) / 180}  position={[290, 0, 0]} name={name}>
-        <MeshComponents radius={30} transparent={true} opacity={0} side={THREE.DoubleSide} renderOrder={999} />
+        <group /* onPointerOver={onPointerOver} onPointerOut={onPointerOut} */>
+        {/* <mesh geometry={torusGeometry} material={torusMaterial} rotation={[Math.PI / 2, 0, 0]} side={THREE.DoubleSide} renderOrder={998}/> */}
+        {/* <line ref={refEarthLine} geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]} color={'red'}/> */}
+        <MeshComponents 
+          radius={0.5} 
+          transparent={true} 
+          opacity={0} 
+          ref={refEarth} 
+          rotation-z={(23.44 * Math.PI) / 180}  
+          position={[250, 0, 0]} 
+          name={name}
+        >
           <MeshComponents
             radius={1}
             map={textures.map}

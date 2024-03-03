@@ -21,14 +21,14 @@ const Uranus = ({ lineGeometry, lineMaterial,name }) => {
     return (
         <>
             <group>
-        <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]}/>
+                {/* <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]}/> */}
 
                 <MeshComponents
                     radius={0.5}
                     transparent={true}
                     opacity={0}
                     rotation-z={(82.23*Math.PI/180)}
-                    position={[530,0,0]}
+                    position={[450,0,0]}
                     name={name}
                 >
                     <MeshComponents

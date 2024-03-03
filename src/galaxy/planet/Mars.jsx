@@ -18,15 +18,15 @@ const Mars = ({ lineGeometry, lineMaterial, name }) => {
       return (
         <>
         <group>
-        <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]} />
+        {/* <line geometry={lineGeometry} material={lineMaterial} rotation={[Math.PI / 2, 0, 0]} /> */}
 
             <MeshComponents
-                      position={[350,0,0]}
-            radius={0.3}
-            rotation-z={(25.19 * Math.PI) / 180}
-            name={name}
-            transparent={true}
-      opacity={0}
+                position={[300,0,0]}
+                radius={0.3}
+                rotation-z={(25.19 * Math.PI) / 180}
+                name={name}
+                transparent={true}
+                opacity={0}
             >
             <MeshComponents
             radius={0.5}
