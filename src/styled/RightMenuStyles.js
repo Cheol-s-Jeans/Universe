@@ -13,6 +13,10 @@ const rightArrowAniOff = keyframes`
     0%{transform:translateX(-330px) translateY(-50%) rotateY(180deg)}
     100%{transform:translateX(0px) translateY(-50%) rotateY(360deg)}
 `
+const bakingAni = keyframes`
+    0%{opacity:1; transform:translateY(10px) rotate(90deg);}
+    100%{opacity:0; transform:translateY(-20px) rotate(90deg);}
+`
 
 export const StarWrap = styled.div`
     .right_arrow{
@@ -136,7 +140,7 @@ export const StarWrap = styled.div`
                 span{
                     position: absolute;
                     top: 0px;
-                    left: 35%;
+                    left: 40%;
                     display: inline-block;
                     font-size: 40px;
                     font-weight: 900;
@@ -147,15 +151,12 @@ export const StarWrap = styled.div`
                         left: 55%;
                         top: -10px;
                     }
+                    &.animate{
+                        animation: ${bakingAni} 1s ease-in-out ;
+
+                    }
                 }
 
-            }
-            .smoke{
-                .smoke_1{
-                    /* display: flex; */
-                    /* flex-direction: column; */
-                    
-                }
             }
         }
     }

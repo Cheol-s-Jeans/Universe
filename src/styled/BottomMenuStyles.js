@@ -44,7 +44,7 @@ export const BottomMenuWrap = styled.div`
                     width: 150px;
                 }
                 span{
-                    padding-top: 10px;
+                    padding-top: 15px;
                 }
             }
             
