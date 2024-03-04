@@ -1,11 +1,21 @@
 import { useState } from "react";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { StarWrap } from "../styled/RightMenuStyles";
+import BreadBaking from "./BreadBaking";
 
 const RightMenu = () => {
+    //사이드 메뉴버튼
     const [sideMenuOn, setSideMenuOn] = useState(false)
     const onSideMenu = () =>{
         setSideMenuOn(!sideMenuOn)
+    }
+    //굽기버튼
+    const [bakingButton, setBakingButton] = useState(false)
+    const onBakingClick = ()=>{
+        setBakingButton(true);
+        setTimeout(() => {
+            setBakingButton(false)
+        }, 1000);
     }
     return (
         <StarWrap>
@@ -24,45 +34,15 @@ const RightMenu = () => {
                     </div>
                     <div className="btn_box">
                         <span>붕어빵 굽기</span>
-                        <button className="btn_3d">On</button>
+                        <button className="btn_3d" onClick={onBakingClick}>On</button>
                     </div>
                     <div className="fishbread_baking">
-                        <div className="bread_box">
-                            <span>~</span>
-                            <span>~</span>
-                            <img src="./images/fishBread.gif" alt="" />
-                        </div>
-                        <div className="bread_box">
-                            <span>~</span>
-                            <span>~</span>
-                            <img src="./images/fishBread.gif" alt="" />
-                        </div>
-                        <div className="bread_box">
-                            <span>~</span>
-                            <span>~</span>
-                            <img src="./images/fishBread.gif" alt="" />
-                        </div>
-                        <div className="bread_box">
-                            <span>~</span>
-                            <span>~</span>
-                            <img src="./images/fishBread.gif" alt="" />
-                        </div>
-                        <div className="bread_box">
-                            <span>~</span>
-                            <span>~</span>
-                            <img src="./images/fishBread.gif" alt="" />
-                        </div>
-                        <div className="bread_box">
-                            <span>~</span>
-                            <span>~</span>
-                            <img src="./images/fishBread.gif" alt="" />
-                        </div>
-                        <div className="smoke">
-                            <div className="smoke_1">
-                                {/* <span>~</span>
-                                <span>~</span> */}
-                            </div>
-                        </div>
+                        <BreadBaking bakingButton={bakingButton}/>
+                        <BreadBaking bakingButton={bakingButton}/>
+                        <BreadBaking bakingButton={bakingButton}/>
+                        <BreadBaking bakingButton={bakingButton}/>
+                        <BreadBaking bakingButton={bakingButton}/>
+                        <BreadBaking bakingButton={bakingButton}/>
                     </div>
                 </div>
 

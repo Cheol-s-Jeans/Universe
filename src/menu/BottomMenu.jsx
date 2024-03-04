@@ -8,30 +8,33 @@ import 'swiper/css/scrollbar';
 import { Canvas } from "@react-three/fiber";
 import BottomMenuPlanet from "./BottomMenuPlanet";
 import { useState } from "react";
-// import HoverCircle from "./HoverCircle";
+import { AiOutlineHome } from "react-icons/ai";
 
 const bottomMenuList = [
-    {id:1, name:"galaxy", map:"./images/galaxy/Asphalt_005_COLOR.jpg", bumpMap:"./images/galaxy/Asphalt_005_ROUGH.jpg", desc:"행성성명작성"},
-    {id:2, name:"sun", map:"./images/galaxy/sun/8k_sun.jpg", desc:"행성성명작성"},
-    {id:3, name:"mercury", map:"./images/galaxy/mercury/mercurymap.jpg",bumpMap:"./images/galaxy/mercury/mercurybump.jpg", desc:"행성성명작성"},
-    {id:4, name:"venus", map:"./images/galaxy/venus/venusmap.jpg",bumpMap:"./images/galaxy/venus/venusbump.jpg", desc:"행성성명작성"},
-    {id:5, name:"earth", map:"./images/galaxy/earth/earthmap1k.jpg",bumpMap:"./images/galaxy/earth/earthbump1k.jpg",aoMap:"./images/galaxy/earth/earthspec1k.jpg", desc:"행성성명작성"},
-    {id:6, name:"mars", map:"./images/galaxy/mars/mars_1k_color.jpg",bumpMap: "./images/galaxy/mars/mars_1k_topo.jpg", normalMap:"./images/galaxy/mars/mars_1k_normal.jpg", desc:"행성성명작성"},
-    {id:7, name:"jupiter", map:"./images/galaxy/jupiter/8k_jupiter.jpg", desc:"행성성명작성"},
-    {id:8, name:"sapturn", map:"./images/galaxy/saturn/saturnmap.jpg", ringMap: "./images/galaxy/saturn/saturnringcolor.jpg", ringPatternMap: "./images/galaxy/saturn/saturnringpattern.gif",desc:"행성성명작성"},
-    {id:9, name:"uranus", map:"./images/galaxy/uranus/uranusmap.jpg", ringMap:"./images/galaxy/uranus/uranusringcolour.jpg",
+    // {id:1, name:"galaxy",position:[0,0,0], map:"./images/galaxy/Asphalt_005_COLOR.jpg", bumpMap:"./images/galaxy/Asphalt_005_ROUGH.jpg", desc:"행성성명작성"},
+    {id:2, name:"sun",position:[-100,50,300], map:"./images/galaxy/sun/8k_sun.jpg", desc:"행성성명작성"},
+    {id:3, name:"mercury",position:[170,0,0], map:"./images/galaxy/mercury/mercurymap.jpg",bumpMap:"./images/galaxy/mercury/mercurybump.jpg", desc:"행성성명작성"},
+    {id:4, name:"venus",position:[230,0,0], map:"./images/galaxy/venus/venusmap.jpg",bumpMap:"./images/galaxy/venus/venusbump.jpg", desc:"행성성명작성"},
+    {id:5, name:"earth",position:[290,0,0], map:"./images/galaxy/earth/earthmap1k.jpg",bumpMap:"./images/galaxy/earth/earthbump1k.jpg",aoMap:"./images/galaxy/earth/earthspec1k.jpg", desc:"행성성명작성"},
+    {id:6, name:"mars",position:[350,0,0], map:"./images/galaxy/mars/mars_1k_color.jpg",bumpMap: "./images/galaxy/mars/mars_1k_topo.jpg", normalMap:"./images/galaxy/mars/mars_1k_normal.jpg", desc:"행성성명작성"},
+    {id:7, name:"jupiter",position:[410,0,0], map:"./images/galaxy/jupiter/8k_jupiter.jpg", desc:"행성성명작성"},
+    {id:8, name:"sapturn",position:[470,0,0], map:"./images/galaxy/saturn/saturnmap.jpg", ringMap: "./images/galaxy/saturn/saturnringcolor.jpg", ringPatternMap: "./images/galaxy/saturn/saturnringpattern.gif",desc:"행성성명작성"},
+    {id:9, name:"uranus",position:[530,0,0], map:"./images/galaxy/uranus/uranusmap.jpg", ringMap:"./images/galaxy/uranus/uranusringcolour.jpg",
     ringTransMap:"./images/galaxy/uranus/uranusringtrans.jpg",desc:"행성성명작성"},
-    {id:10, name:"neptune", map:"./images/galaxy/neptune/neptunemap.jpg", desc:"행성성명작성"}
+    {id:10, name:"neptune",position:[590,0,0], map:"./images/galaxy/neptune/neptunemap.jpg", desc:"행성성명작성"}
 ]
 
-const BottomMenu = () => {
-    const [isHoverId, setIsHoverId] = useState(null);
+const BottomMenu = ({CameraMove}) => {
+    const [isHoverId, setIsHoverId] = useState(false);
+
+    //hover
     const mouseOver = (id) => {
         setIsHoverId(id);
     }
     const mouseOut = () =>{
-        setIsHoverId();
+        setIsHoverId(false);
     }
+
     return ( 
         <BottomMenuWrap>
             <Swiper
@@ -56,10 +59,14 @@ const BottomMenu = () => {
                 //     }}
                 // }
             >
+                {/* homeButton 예시2 */}
+                {/* <SwiperSlide>
+                    <div className="homeButton"><i><AiOutlineHome /></i></div>
+                </SwiperSlide> */}
                 {bottomMenuList.map(item=><SwiperSlide key={item.id} className="planer_list">
                         <div className="planer_list_box" onMouseOver={()=>mouseOver(item.id)} onMouseOut={mouseOut}>
                             <Canvas>
-                                <BottomMenuPlanet item={item} isHoverId={isHoverId} style={{ hover: { boxShadow: '0px 0px 22px 10px #FFFFFF' } }}/>
+                                <BottomMenuPlanet CameraMove={CameraMove} item={item} isHoverId={isHoverId} />
                             </Canvas>
                             <span>{item.name}</span>
                         </div>

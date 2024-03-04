@@ -21,6 +21,14 @@ export const BottomMenuWrap = styled.div`
             color:  #aaa;
             transform: translateX(0px);
         }
+        /* .homeButton{
+            color: #fff;
+            position:relative;
+            top:50%;
+            left:50%;
+            transform: translateY(-50%) ;
+            font-size: 30px;
+        } */
         .planer_list{
             .planer_list_box{
                 margin-left: 0px;
@@ -44,7 +52,7 @@ export const BottomMenuWrap = styled.div`
                     width: 150px;
                 }
                 span{
-                    padding-top: 10px;
+                    padding-top: 15px;
                 }
             }
             
