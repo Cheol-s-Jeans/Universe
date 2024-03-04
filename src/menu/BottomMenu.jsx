@@ -59,10 +59,7 @@ const BottomMenu = ({CameraMove}) => {
                 //     }}
                 // }
             >
-                {/* homeButton 예시2 */}
-                {/* <SwiperSlide>
-                    <div className="homeButton"><i><AiOutlineHome /></i></div>
-                </SwiperSlide> */}
+
                 {bottomMenuList.map(item=><SwiperSlide key={item.id} className="planer_list">
                         <div className="planer_list_box" onMouseOver={()=>mouseOver(item.id)} onMouseOut={mouseOut}>
                             <Canvas>
