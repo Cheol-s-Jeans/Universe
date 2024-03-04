@@ -4,6 +4,7 @@ import * as THREE from "three";
 const MeshComponents = forwardRef((props, ref) => {
   const {
     radius,
+    scale,
     color,
     roughness,
     metalness,
@@ -30,6 +31,7 @@ const MeshComponents = forwardRef((props, ref) => {
   // 기본값 설정
   const defaultValues = {
     radius: 1,
+    scale:1,
     color: 0xffffff,
     roughness: 0.5,
     metalness: 0.5,
@@ -59,6 +61,7 @@ const MeshComponents = forwardRef((props, ref) => {
   // Material에 전달할 속성 추출
   const {
     radius: mergedRadius,
+    scale: mergeScale,
     color: mergedColor,
     roughness: mergedRoughness,
     metalness: mergedMetalness,
@@ -81,8 +84,9 @@ const MeshComponents = forwardRef((props, ref) => {
     bumpScale: mergedBumpScale,
     blending: mergedBlending,
   } = mergedProps;
-
-  const geom = new THREE.SphereGeometry(mergedRadius, 64, 32);
+  
+  const actualScale = mergeScale !== undefined ? mergeScale : defaultValues.scale;
+  const geom = new THREE.SphereGeometry(mergedRadius * actualScale, 64, 32);
   const mate = new THREE.MeshStandardMaterial({
     color: mergedColor,
     roughness: mergedRoughness,

@@ -1,9 +1,9 @@
 import { useFrame } from "@react-three/fiber";
-import MeshComponents from "../MeshComponents";
+import MeshComponents from "./MeshComponents";
 import { useTexture } from "@react-three/drei";
 import { useRef } from "react";
 
-const Moon = () => {
+const Moon = ({setIsPlanetHover}) => {
   const textures = useTexture({
     map: "./images/galaxy/moon/moonmap4k.jpg",
     bumpMap: "./images/galaxy/moon/moonbump4k.jpg",

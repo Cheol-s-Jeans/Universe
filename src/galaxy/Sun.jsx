@@ -1,43 +1,17 @@
 import { useTexture } from "@react-three/drei";
 import CameraControls from '../CameraControls'
 import MeshComponents from "./MeshComponents";
-import { useEffect, useRef, useState } from "react";
-import { useFrame, useThree } from "@react-three/fiber";
-import Mercury from "./planet/Mercury";
-import Venus from "./planet/Venus";
-import Earth from "./planet/Earth";
-import Mars from "./planet/Mars";
-import Jupiter from "./planet/Jupiter";
-import Saturn from "./planet/Saturn";
-import Uranus from "./planet/Uranus";
-import Neptune from "./planet/Neptune";
+import { useEffect, useRef } from "react";
+import { useThree } from "@react-three/fiber";
 import * as THREE from 'three'
 import { Bloom, EffectComposer} from '@react-three/postprocessing';
-import { useControls } from "leva";
-const planets = [
-  {id:1, name: "Mercury", component: Mercury, radius: 170 },
-  {id:2, name: 'Venus', component: Venus, radius: 230 },
-  {id:3, name: 'Earth', component: Earth, radius: 290 },
-  {id:4, name: 'Mars', component: Mars, radius: 350 },
-  {id:5, name: 'Jupiter', component: Jupiter, radius: 410 },
-  {id:6, name: 'Saturn', component: Saturn, radius: 470 },
-  {id:7, name: 'Uranus', component: Uranus, radius: 530 },
-  {id:8, name: 'Neptune', component: Neptune, radius: 590 },
-];
+import PlanetComponents from "./PlanetComponents";
+import planetList from "../assets/api/PlanetList";
 
 const Sun = ({CameraMove,cameraPosition,cameraTarget}) => {
   const textures = useTexture({ map: "./images/galaxy/sun/8k_sun.jpg" });
   const refMesh = useRef();
-  const refPlanetMesh = useRef();
-  const createCurve = (xRadius, yRadius, tube =15, radialSegments = 16, tubularSegments = 100) => {
-    const curve = new THREE.EllipseCurve(0, 0, xRadius, yRadius, 0, 2 * Math.PI, false, 0);
-    const points = curve.getPoints(1000);
-    const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
-    const lineMaterial = new THREE.LineBasicMaterial({ color: 0xaaaaaa, transparent : true, opacity:0.3 });
-    const torusGeometry = new THREE.TorusGeometry(xRadius, tube, radialSegments, tubularSegments);
-    const torusMaterial = new THREE.MeshBasicMaterial({ color: 0xaaaaaa, transparent : true, opacity:0});
-    return { lineGeometry, lineMaterial, torusGeometry, torusMaterial };
-  }
+  
   const { gl,camera,scene } = useThree();
   const raycaster = new THREE.Raycaster();
 
@@ -53,7 +27,7 @@ const Sun = ({CameraMove,cameraPosition,cameraTarget}) => {
     if (intersects.length > 0) {
       let object = intersects[0].object;
       while (object) {
-        if (planets.map(planet => planet.name).includes(object.name)) {
+        if (planetList.map(planet => planet.name).includes(object.name)) {
           const namedObject = object.getObjectByName(object.name);
           if (namedObject) {
             CameraMove(namedObject.position)
@@ -71,32 +45,6 @@ const Sun = ({CameraMove,cameraPosition,cameraTarget}) => {
     };
   }, []);
 
-  //행성hover -> 행성scale UP
-  const [isPlanetHover, setIsPlanetHover] = useState(false);
-  // const targetScale = isPlanetHover ? new THREE.Vector3(20,20,20) : new THREE.Vector3(1,1,1);
-  const planetMouseOver = (id)=>{
-    // setIsPlanetHover(id)
-    // console.log(isPlanetHover)
-    console.log(id)
-  }
-  const planetMouseOut = ()=>{
-    // setIsPlanetHover(false)
-    // console.log(isPlanetHover)
-    console.log(isPlanetHover)
-  }
-  useFrame((state, delta)=>{
-    // if(isPlanetHover)
-    // refPlanetMesh.current.scale.lerp(new THREE.Vector3(20, 20, 20), 0.1);
-    if (refPlanetMesh.current && isPlanetHover) {
-      if (refPlanetMesh.current.scale) {
-        refPlanetMesh.current.scale.lerp(new THREE.Vector3(20, 20, 20), 0.1);
-      } else {
-        console.error("refPlanetMesh.current.scale이 정의되지 않았습니다.");
-        refPlanetMesh.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
-      }
-    }
-  })
-
   return (
     <>
       <ambientLight intensity={0.3} />
@@ -108,25 +56,10 @@ const Sun = ({CameraMove,cameraPosition,cameraTarget}) => {
           mipmapBlur={true} />
       </EffectComposer>
 
-      <MeshComponents onPointerOver={planetMouseOver} onPointerOut={planetMouseOut} radius={109} ref={refMesh} position={[0, 0, 0]} map={textures.map} emissiveMap={textures.map} emissive="#ffffff" emissiveIntensity={3}>
+      <MeshComponents radius={109} ref={refMesh} position={[0, 0, 0]} map={textures.map} emissiveMap={textures.map} emissive="#ffffff" emissiveIntensity={3}>
         <CameraControls position={cameraPosition} target={cameraTarget}/>
-        <pointLight intensity={500000} position={[0, 0, 0]} color="#FFFFFF" distance={0} />
-          {planets.map((planet) => {
-            const PlanetComponent = planet.component;
-            // const { lineGeometry, lineMaterial,torusGeometry, torusMaterial  } = createCurve(planet.radius, planet.radius);
-            return <PlanetComponent
-                ref={planet.id === isPlanetHover ? refPlanetMesh : null}
-                key={planet.id}
-                name={planet.name}
-                onPointerOver={()=>planetMouseOver(planet.name)} 
-                onPointerOut={planetMouseOut}
-                
-                // lineGeometry={lineGeometry}
-                // lineMaterial={lineMaterial}
-                // torusGeometry={torusGeometry}
-                // torusMaterial={torusMaterial}
-              />
-          })}
+        <pointLight intensity={400000} position={[0, 0, 0]} color="#FFFFFF" distance={0} />
+        {planetList.map(item=><PlanetComponents key={item.id} item={item} />)}
       </MeshComponents>
     </>
   );

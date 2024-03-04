@@ -10,41 +10,16 @@ import { OrbitControls } from "@react-three/drei";
 
     function cameraAnimate() {
       if (ref.current) {
-        if(position.x === 290){
         console.log(position)
-        gsap.timeline().to(
-          camera.position, 
-          {
-            duration: 2,
-            repeat: 0,
-            x: position.x + 4,
-            y: position.y + 2,
-            z: position.z + 2,
-            ease: "power3.inOut",
-        });
-        gsap.timeline().to(
-          ref.current.target,
-          {
-            duration: 2,
-            repeat: 0,
-            x: target.x,
-            y: target.y,
-            z: target.z,
-            ease: "power3.inOut",
-          }
-        );
-        
-      }else {
-      console.log(position)
 
         gsap.timeline().to(
           camera.position, 
           {
             duration: 2,
             repeat: 0,
-            x: position.x + 40,
+            x: position.x - 40,
             y: position.y + 20,
-            z: position.z + 50,
+            z: position.z + 100,
             ease: "power3.inOut",
         });
  
@@ -59,7 +34,6 @@ import { OrbitControls } from "@react-three/drei";
             ease: "power3.inOut",
           }
         );
-      }
      }
    }
 
