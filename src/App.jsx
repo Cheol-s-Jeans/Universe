@@ -32,7 +32,7 @@ const App = () => {
       </Canvas>
       {/* 메뉴 - React.js */}
       <TopMenu setCameraPosition={setCameraPosition} setCameraTarget={setCameraTarget}/>
-      <RightMenu/>
+      {/* <RightMenu/> */}
       <BottomMenu CameraMove={CameraMove} />
     </>
   );

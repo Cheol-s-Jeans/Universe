@@ -1,4 +1,4 @@
-import {keyframes, styled} from 'styled-components'
+import { keyframes, styled } from 'styled-components'
 
 const rightArrowAni = keyframes`
     0%{transform:translateX(0px) translateY(-50%) }
@@ -27,12 +27,13 @@ export const StarWrap = styled.div`
         transform: translateY(-50%);
         right: 20px;
         padding: 0px;
-        color: white;
+        color: #333;
         font-size: 40px;
         transition: all 1s ease-in-out;
         /* animation: ${rightArrowAni} 1s infinite ease-in-out; */
         /* animation: ${rightArrowAniOff} 1s forwards ease-in-out; */
         &.on{
+            color: #ffffff;
             /* animation: ${rightArrowAniOn} 1s forwards ease-in-out; */
             transform: translateX(-390px)translateY(-50%) rotateY(180deg) ;
         }
