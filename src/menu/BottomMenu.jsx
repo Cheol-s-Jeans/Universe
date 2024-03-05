@@ -8,6 +8,7 @@ import 'swiper/css/scrollbar';
 import { Canvas } from "@react-three/fiber";
 import BottomMenuPlanet from "./BottomMenuPlanet";
 import { useState } from "react";
+import { MdKeyboardDoubleArrowUp } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
 
 const bottomMenuList = [
@@ -26,7 +27,7 @@ const bottomMenuList = [
 
 const BottomMenu = ({CameraMove}) => {
     const [isHoverId, setIsHoverId] = useState(false);
-
+    const [bottomMenuOn, setBottomMenuOn] = useState(false)
     //hover
     const mouseOver = (id) => {
         setIsHoverId(id);
@@ -34,9 +35,13 @@ const BottomMenu = ({CameraMove}) => {
     const mouseOut = () =>{
         setIsHoverId(false);
     }
+    const onBottomMenu = () =>{
+        setBottomMenuOn(!bottomMenuOn)
+    }
 
     return ( 
-        <BottomMenuWrap>
+        <BottomMenuWrap className={`bottom_info_box ${bottomMenuOn?"on":""}`}>
+            <div className={`bottom_arrow ${bottomMenuOn?"on":""}`} onClick={()=>onBottomMenu()}><MdKeyboardDoubleArrowUp /></div>
             <Swiper
                 style={{
                     width:"100%",

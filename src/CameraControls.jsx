@@ -10,8 +10,6 @@ import { OrbitControls } from "@react-three/drei";
 
     function cameraAnimate() {
       if (ref.current) {
-        console.log(position)
-
         gsap.timeline().to(
           camera.position, 
           {
@@ -22,8 +20,7 @@ import { OrbitControls } from "@react-three/drei";
             z: position.z + 100,
             ease: "power3.inOut",
         });
- 
-        gsap.timeline().to(
+        gsap.timeline().to( 
           ref.current.target,
           {
             duration: 2,

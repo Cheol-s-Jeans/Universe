@@ -1,8 +1,8 @@
-import {styled} from 'styled-components'
+import { styled } from 'styled-components'
 
 export const BottomMenuWrap = styled.div`
     position: absolute;
-    bottom: 10px;
+    bottom: -205px;;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
@@ -10,7 +10,29 @@ export const BottomMenuWrap = styled.div`
     box-sizing: border-box;
     padding-top: 20px;
     text-transform: uppercase;
+    transition: all 1s ease-in-out;
+    &.on{
+        transform: translateX(-50%) translateY(-80%) 
+    }
     /* background: #fff; */
+    .bottom_arrow{
+        z-index: 10;
+        box-sizing: border-box;
+        position: absolute;
+        top: -10%;
+        right: 50%;
+        transform: translateX(50%);
+        padding: 0px;
+        color: white;
+        font-size: 40px;
+        transition: all 1s ease-in-out;
+        color: #333;
+
+        &.on{
+            color: #ffffff;
+            transform: translateX(50%) translateY(90%) rotateX(180deg) ;
+        }
+    }
     .planer_swiper{
         
         .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
